@@ -30,15 +30,15 @@ test.beforeEach(
       console.error("Error closing eSIM store popup:", error);
     }
 
-  // Accept cookies if banner is visible
-  try {
-    const cookieBanner = page.getByRole('button', { name: 'ACCEPT' });
-    if (await cookieBanner.isVisible()) {
-      await cookieBanner.click();
+    // Accept cookies if banner is visible
+    try {
+      const cookieBanner = page.getByRole("button", { name: "ACCEPT" });
+      if (await cookieBanner.isVisible()) {
+        await cookieBanner.click();
+      }
+    } catch (error) {
+      console.error("Error accepting cookies:", error);
     }
-  } catch (error) {
-    console.error("Error accepting cookies:", error);
-  }
 
     // Handle push notification popup
     try {
@@ -71,22 +71,6 @@ test.afterEach("Close the browser", async ({ page }) => {
 test("Verify Selection and Purchase of eSIM Package for Japan", async ({
   page,
 }) => {
-  // Soft Assertion function
-  /**
-   * softAssert: Will continue the execution even if the condition doesn't match
-   * @param {*} actual
-   * @param {*} expected
-   * @param {*} message
-   * @param {*} errorList
-   */
-  function softAssert(actual, expected, message, errorList) {
-    try {
-      expect(actual).toEqual(expected);
-    } catch (error) {
-      errorList.push(message);
-    }
-  }
-
   // Step 2: Search for Japan
   await page.getByTestId("search-input").fill("Japan");
   await page.getByTestId("Japan-name").click();
@@ -140,17 +124,7 @@ test("Verify Selection and Purchase of eSIM Package for Japan", async ({
    * expect(validityValue?.trim().toLowerCase()).toEqual(expectedPackageValues.Validity.toLowerCase());
    */
 
-  // List to collect errors
-  let errors = [];
-
-  softAssert(
-    validityValue?.trim(),
-    expectedPackageValues.Validity,
-    `Expected Validity value to be '${validityValue.trim()}' and observed is '${
-      expectedPackageValues.Validity
-    }'`,
-    errors
-  );
+  expect(validityValue.trim()).toEqual(expectedPackageValues.Validity);
 
   /**
    * Bug 2: Mismatch between expected and observed value for price
@@ -162,23 +136,10 @@ test("Verify Selection and Purchase of eSIM Package for Japan", async ({
     .getByTestId("PRICE-value")
     .textContent();
 
+  expect(priceValue?.trim().trim()).toEqual(expectedPackageValues.Price);
+
   //todo : to handle currency formatting
   // const priceValueWithoutCurrency = priceValue?.replaceAll(/[A-Za-z]/g, "");
-
-  softAssert(
-    priceValue?.trim(),
-    expectedPackageValues,
-    `Expected price value is ${priceValue?.trim()} and observed is ${
-      expectedPackageValues.Price
-    }`,
-    errors
-  );
-
-  if (errors.length > 0) {
-    errors.forEach(function (error) {
-      console.error(error);
-    });
-  }
 });
 
 test("Verify country search results with typo input.", async ({ page }) => {

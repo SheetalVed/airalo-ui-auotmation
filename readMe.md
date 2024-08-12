@@ -15,7 +15,7 @@ Before running the tests, ensure you have the following installed:
 1. **Clone the Repository**
 
 
-         git clone https://github.com/your-username/airalo-playwright-tests.git
+         git clone https://github.com/your-username/airalo-ui-auotmation.git
 
          cd airaloUIAutomation
 
@@ -58,7 +58,7 @@ To execute the test suite
 🔹To run a specific test in the desired file:, run:
 
 
-      npx playwright test my-tests.spec.js --grep "Test Case 2"
+      npx playwright test --project=chromium my-tests.spec.js --grep "Test Case 2"
 
 
 Replace my-tests.spec.js with your spec file name and "Test Case 2" with the test name or pattern.
@@ -127,3 +127,7 @@ Test results are saved in the playwright-report directory. Open index.html in th
 ### 🛠️ Troubleshooting
 Browser version mismatch: Run npx playwright install to ensure all required browsers are installed.
 Test execution issues: Verify that all dependencies are installed correctly with npm install.
+
+### 📑 Test Cases
+
+- [UI Test_Cases](UI_TestCases.csv)

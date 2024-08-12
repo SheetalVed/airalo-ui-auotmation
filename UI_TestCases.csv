@@ -1,0 +1,34 @@
+Project Name,Airalo_UI_Automation,,,,,,,,,,,
+Module Name,Package_details_verification,,,,,,,,,,,
+Reference Document,QA Coding Exercise Instructions.pdf,,,,,,,,,,,
+Created By,Sheetal Bhatia,,,,,,,,,,,
+Date of Creation,12-08-2024,,,,,,,,,,,
+Reviewed By,,,,,,,,,,,,
+Date of Review,,,,,,,,,,,,
+,,,,,,,,,,,,
+Test Case ID,Test Case,Test Case Description,Priority,Environment,Pre-condition,Test step #,Test steps,Test Data,Expected Result,Actual Result,Status,Additional Note
+TC_AIRALO_UI_001,Verify Selection and Purchase of eSIM Package for Japan,"This test case verifies that users can correctly search for Japan, select the appropriate eSIM package, and verify the package details on Airalo's website.",P1,Web Browser (Chrome),https://www.airalo.com/ website should be up and running,1,Launch the browser and navigate to URL : https://www.airalo.com/,N/A,Airalo’s home page should load successfully.,Airalo’s home page loads successfully.,Passed,
+,,,,,Airalo website is loaded.,2,"In the search field on the home page, type ""Japan"" and select the ""Japan"" destination from the “Local” section in the autocomplete options.","""Japan""","The search field should display “Japan” as an option under the “Local” section, and selecting it should navigate to the Japan eSIM page.","The search field displays “Japan” as an option under the “Local” section, and selecting it navigates to the Japan eSIM page.",Passed,
+,,,,,Japan page is displayed.,3,"On the Japan eSIM page, choose the first eSIM package listed by clicking ''Buy Now'",N/A,"The first eSIM package should get selected, and the page should be updated to show details of this package.","The first eSIM package is selected, and the page updates to show details of this package.",Passed,
+,,,,,Purchase popup is displayed.,4,"In the popup, verify the following details: 
+Title: Moshi Moshi 
+Coverage: Japan 
+Data: 1 GB 
+Validity: 7 days 
+Price: $4.50","Title: Moshi Moshi
+Coverage: Japan
+Data: 1 GB
+Validity: 7 days
+Price: $4.50","The popup should display the correct package details: 
+Title: Moshi Moshi 
+Coverage: Japan 
+Data: 1 GB 
+Validity: 7 days 
+Price: $4.50","The popup displays the following package details: 
+Title: Moshi Moshi 
+Coverage: Japan 
+Data: 1 GB 
+Validity: 7 Days 
+Price: $4.50 USD",Failed,Need confirmation on the display of Validity and Price Value
+TC_AIRALO_UI_002,Search for Japan (typo Input),Verify search results with typo input.,P2,Web Browser (Chrome),Airalo website is loaded.,1," Enter a misspelled version of ""Japan"".","""Japaan""","""Japan"" should still be suggested ","""Japan"" getting suggested",Passed,
+TC_AIRALO_UI_003,Search for Japan (Incorrect Input),Verify search results with incorrect input.,P2,Web Browser (Chrome),Airalo website is loaded.,1,"Enter a incorrect version of ""japantest"".","""japantest""","Messgae should get displayed ""No Country Available""","Observed message :  ""No Country Available""",Passed,
